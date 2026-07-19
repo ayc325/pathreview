@@ -13,7 +13,7 @@ would accomplish. Naming the part of the codebase it affects is helpful context.
 
 The issue is that there is documentation missing for the POST /profiles endpoint, specifically the request body schema. The bug was recreated via `localhost:8000/docs` as the schema was nowhere to be found. A successful fix would include a request body schema. The affected part of the codebase is in `docs/API.md`.
 
-**Branch name:** docs/CONTRIBUTING.md
+**Branch name:** docs/89-add-missing-request-body-schema
 
 **Setup confirmation:** [X] App runs locally at localhost:5173
 
