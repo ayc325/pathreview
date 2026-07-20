@@ -11,10 +11,15 @@
 the title), what is currently broken or missing, and what a successful fix
 would accomplish. Naming the part of the codebase it affects is helpful context.]
 
-The issue is that there is documentation missing for the POST /profiles endpoint, specifically the request body schema. The bug was recreated via `localhost:8000/docs` as the schema was nowhere to be found. A successful fix would include a request body schema. The affected part of the codebase is in `docs/API.md`.
+The issue is that there is documentation missing for the POST /profiles endpoint, specifically the request body schema. The bug was recreated via `localhost:8000/docs` as the schema was nowhere to be found. A successful fix would document the multipart form fields the endpoint actually accepts — `github_username`, `portfolio_url`, and `resume_file` — along with their types and constraints, since the endpoint uses `Form` and `File` parameters rather than a JSON body. The affected part of the codebase is in `docs/API.md`.
 
 **Branch name:** docs/89-add-missing-request-body-schema
 
 **Setup confirmation:** [X] App runs locally at localhost:5173
 
 **Cohort ledger:** [X] Issue added to cohort ledger
+
+**Issue fit and selection reasoning:**
+[X] "Is this right for me?" checklist reviewed
+
+I know that Tier 1 is right for me because it's my first open source contribution. I know what fixes to make, and I know what done looks like based on the other examples of a complete API schema. There is a good number of people that also chose this issue, but I don't have a problem with that. Also, based on the hours I am able to commit for this project, 3–6 hours is sufficient especially since I have a lot of other stuff going on during these last few weeks. The only dependency is that I should check if the code for the POST /profiles endpoint is complete before writing the reference doc.
