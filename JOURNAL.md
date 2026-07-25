@@ -23,3 +23,17 @@ The issue is that there is documentation missing for the POST /profiles endpoint
 [X] "Is this right for me?" checklist reviewed
 
 I know that Tier 1 is right for me because it's my first open source contribution. I know what fixes to make, and I know what done looks like based on the other examples of a complete API schema. There is a good number of people that also chose this issue, but I don't have a problem with that. Also, based on the hours I am able to commit for this project, 3–6 hours is sufficient especially since I have a lot of other stuff going on during these last few weeks. The only dependency is that I should check if the code for the POST /profiles endpoint is complete before writing the reference doc.
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** [link to commit documenting the reproduced issue]
+
+**Reproduction summary:**
+I ran the app locally and opened the interactive API docs at `localhost:8000/docs`, then navigated to the `POST /profiles` endpoint. I observed that the endpoint's request body section did not list the expected schema (the `github_username`, `portfolio_url`, and `resume_file` multipart form fields), confirming that `docs/API.md` is missing this documentation and needs to be updated to match the actual `Form`/`File` parameters accepted by the endpoint.
+
+**PLAN.md link:** [link to PLAN.md in your fork]
+
+**Walkthrough video (recommended):** [link to your Loom video, ≤2 min — recommended, not graded]
+
+**Blockers or open questions:**
+[Anything you're still uncertain about going into Week 9, or leave blank]
