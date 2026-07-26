@@ -11,6 +11,14 @@ The root cause is that `docs/API.md` lists `POST /profiles` with only a one-line
 Which files, functions, or modules are involved?
 List the specific files you expect to touch.
 
+Files/functions involved:
+
+- `docs/API.md` — the file to edit; currently has a one-line description for `POST /profiles` (in the `### Profiles` section) with no request body schema documented.
+- `api/routes/profiles.py`, `create_profile_endpoint` (lines 23-30) — source of truth for the actual parameters (`github_username`, `portfolio_url`, `resume_file`) and the manual MIME-type validation logic (lines 40-53) that needs to be reflected in the docs.
+- `api/schemas/profile.py`, `ProfileCreate` — source of truth for the `max_length` constraints (255 for `github_username`, 500 for `portfolio_url`) and optionality.
+
+Only `docs/API.md` will actually be modified — the other two files are read-only references I'm documenting from, not touching.
+
 ### Plan
 What are the steps to fix this issue?
 Break it into 3–5 concrete sub-tasks.
