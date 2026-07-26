@@ -26,14 +26,18 @@ I know that Tier 1 is right for me because it's my first open source contributio
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** [link to commit documenting the reproduced issue]
+**Reproduction commit link:** [link to commit documenting the reproduced issue](https://github.com/ayc325/pathreview/commit/8993fa22e63ba9aa98ea4a4d09facadd49aea3ba)
 
 **Reproduction summary:**
 I ran the app locally and opened the interactive API docs at `localhost:8000/docs`, then navigated to the `POST /profiles` endpoint. I observed that the endpoint's request body section did not list the expected schema (the `github_username`, `portfolio_url`, and `resume_file` multipart form fields), confirming that `docs/API.md` is missing this documentation and needs to be updated to match the actual `Form`/`File` parameters accepted by the endpoint.
 
-**PLAN.md link:** [link to PLAN.md in your fork]
+**PLAN.md link:** [PLAN.md](https://github.com/ayc325/pathreview/blob/docs/89-add-missing-request-body-schema/PLAN.md)
 
-**Walkthrough video (recommended):** [link to your Loom video, ≤2 min — recommended, not graded]
+**Walkthrough video (recommended):** Skipped — not part of the grade, and the reproduction commit + PLAN.md already capture what the video would have covered:
+
+- Reproduced the missing schema by hitting `localhost:8000/docs` and confirming `POST /profiles` shows no request body schema.
+- Walked through the planned fix: document the three actual fields (`github_username`, `portfolio_url`, `resume_file`) and their constraints in `docs/API.md`, based on `api/routes/profiles.py` and `api/schemas/profile.py`.
+- Happy to do a live walkthrough in office hours instead if early feedback would help before I start building.
 
 **Blockers or open questions:**
 [Anything you're still uncertain about going into Week 9, or leave blank]
