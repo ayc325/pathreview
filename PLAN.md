@@ -35,8 +35,17 @@ Break it into 3–5 concrete sub-tasks.
 ### Inputs & outputs
 What does your fix take as input? What should it produce or change?
 
+**Input:** The actual field definitions and validation rules read from `api/routes/profiles.py` (the `resume_file` MIME-type check) and `api/schemas/profile.py` (the `ProfileCreate` model's field types and `max_length` constraints) — these are the source of truth the doc must match.
+
+**Output:** An updated `docs/API.md` where the `POST /profiles` entry includes a request body schema (field names, types, required/optional, constraints), a note on the `422` file-type error, and one example request/response. No code changes — the fix only produces new/changed content in `docs/API.md`; behavior of the running API is unaffected.
+
 ### Risks & unknowns
 What could go wrong? What are you still unsure about?
+
+- `github_username` and `portfolio_url` are typed `str` (not `Optional[str]`) in the `Form(...)` params in `api/routes/profiles.py:25-26`, even though they behave as optional (`default=None`) and are only truly constrained by `ProfileCreate` in `api/schemas/profile.py`. Risk of documenting "required" incorrectly — I should verify actual behavior by sending a request that omits these fields before writing the doc, not just trust the type hint.
+- The MIME-type check for `resume_file` (`api/routes/profiles.py:42-53`) relies on `resume_file.content_type` first, falling back to `mimetypes.guess_type(resume_file.filename)`. A browser or client might send an empty/unexpected `content_type` for `.md` files, so the "accepted MIME types" I document could look right on paper but not match what actually gets sent in practice — I'm unsure whether to document the MIME types or the file extensions, since they may not always agree.
+- `docs/API.md` has no existing convention for a request body schema (every endpoint is currently a single one-line bullet), so there's a risk a reviewer expects a different format (e.g., JSON schema block vs. Markdown table) than what I choose. I should check `docs/CONTRIBUTING.md` and/or ask a mentor before finalizing formatting.
+- `PUT /profiles/{profile_id}` exists in `api/routes/profiles.py:147` but isn't documented in `docs/API.md` at all. This is out of scope for issue #89, but there's a risk of scope creep if I try to "fix everything" while I'm in the file — I'll leave it undocumented and out of this PR.
 
 ### Edge cases
 What inputs or states should your fix handle gracefully?
