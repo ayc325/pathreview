@@ -49,3 +49,9 @@ What could go wrong? What are you still unsure about?
 
 ### Edge cases
 What inputs or states should your fix handle gracefully?
+
+- **No `resume_file` provided:** all three fields are optional, so the doc must make clear a profile can be created with just `github_username`/`portfolio_url`, or with neither, and no file at all (`api/routes/profiles.py:27`, `default=None`).
+- **Unsupported file type uploaded:** e.g. a `.docx` or `.png` resume — the doc must state this returns `422` with `"Resume must be a PDF or Markdown file"`, not a silent failure or generic error.
+- **Corrupted/unparseable PDF:** a valid-MIME-type PDF that fails `PyPDF2` parsing returns a different `422` (`"Failed to parse PDF resume"`, `api/routes/profiles.py:68-71`) — worth documenting as a distinct case from the file-type rejection so developers don't confuse the two error messages.
+- **Field values exceeding max length:** `github_username` over 255 chars or `portfolio_url` over 500 chars — the doc should note these are rejected by validation (via `ProfileCreate`) even though the `Form(...)` params themselves don't declare the limit.
+- **Empty string vs. omitted field:** since the params default to `None` rather than being marked `Optional[str]`, it's worth documenting whether sending `github_username=""` behaves the same as omitting it entirely, so developers don't assume the two are equivalent.
