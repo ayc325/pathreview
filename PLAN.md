@@ -23,6 +23,15 @@ Only `docs/API.md` will actually be modified — the other two files are read-on
 What are the steps to fix this issue?
 Break it into 3–5 concrete sub-tasks.
 
+1. Read `create_profile_endpoint` in `api/routes/profiles.py` (lines 23-30, 40-53) and `ProfileCreate` in `api/schemas/profile.py` side by side to confirm the final values to document for each field.
+2. In `docs/API.md`, under the existing `POST /profiles` line, add a request body schema block listing exactly these three fields:
+   - `github_username` — string, optional, max length 255
+   - `portfolio_url` — string, optional, max length 500
+   - `resume_file` — file upload, optional, accepted MIME types `application/pdf`, `text/markdown`, `text/plain`
+3. Directly below the field list, add a note that an unsupported `resume_file` type returns `422 Unprocessable Entity` with detail `"Resume must be a PDF or Markdown file"` — this comes from the manual check in the route handler, not the Pydantic schema, so it's easy to miss.
+4. Add a short example `multipart/form-data` request (showing all three fields) and a successful response so the doc is usable without cross-referencing the source code.
+5. Re-check the finished doc against `localhost:8000/docs` (Swagger UI) to confirm the field names, types, and constraints match exactly, then commit.
+
 ### Inputs & outputs
 What does your fix take as input? What should it produce or change?
 
