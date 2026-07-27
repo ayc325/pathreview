@@ -7,6 +7,8 @@ What is the root cause of this issue? What behavior is expected vs. actual?
 
 The root cause is that `docs/API.md` lists `POST /profiles` with only a one-line description and no request body schema, even though the endpoint accepts a multipart form with three fields (`github_username`, `portfolio_url`, `resume_file`) that carry real constraints — max lengths enforced in `api/schemas/profile.py`'s `ProfileCreate` model, and an allowed-MIME-type check for `resume_file` enforced manually in `api/routes/profiles.py`. Expected behavior: a developer reading `docs/API.md` should be able to construct a valid request (correct field names, types, and constraints) without needing to read the source code. Actual behavior: the doc gives no field-level detail at all, so a developer would only discover the constraints by trial and error — e.g., hitting an undocumented `422` when uploading a resume in an unsupported file format.
 
+**Root cause:** Missing request body documentation in `docs/API.md` — the endpoint's actual `Form`/`File` parameters and their constraints are never surfaced to the reader.
+
 ### Map
 Which files, functions, or modules are involved?
 List the specific files you expect to touch.
@@ -38,6 +40,14 @@ What does your fix take as input? What should it produce or change?
 **Input:** The actual field definitions and validation rules read from `api/routes/profiles.py` (the `resume_file` MIME-type check) and `api/schemas/profile.py` (the `ProfileCreate` model's field types and `max_length` constraints) — these are the source of truth the doc must match.
 
 **Output:** An updated `docs/API.md` where the `POST /profiles` entry includes a request body schema (field names, types, required/optional, constraints), a note on the `422` file-type error, and one example request/response. No code changes — the fix only produces new/changed content in `docs/API.md`; behavior of the running API is unaffected.
+
+**Verification (via Swagger UI at `localhost:8000/docs`) before writing each doc claim:**
+
+- Submit `POST /profiles` with `github_username` and `portfolio_url` omitted entirely — confirm it succeeds, to verify these fields are truly optional despite the `str` (not `Optional[str]`) type hint.
+- Submit with `github_username=""` (empty string) — confirm whether this behaves the same as omitting it, or differently.
+- Upload a `.docx` or `.png` as `resume_file` — confirm the response is `422` with `"Resume must be a PDF or Markdown file"`.
+- Upload a corrupted/invalid PDF — confirm the response is `422` with `"Failed to parse PDF resume"`, distinct from the file-type error.
+- Submit `github_username` over 255 characters — confirm the request is rejected (via `ProfileCreate` validation) even though the `Form(...)` param itself declares no limit.
 
 ### Risks & unknowns
 What could go wrong? What are you still unsure about?
