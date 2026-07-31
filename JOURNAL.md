@@ -41,3 +41,18 @@ I ran the app locally and opened the interactive API docs at `localhost:8000/doc
 
 **Blockers or open questions:**
 [Anything you're still uncertain about going into Week 9, or leave blank]
+
+## Week 9 — Solution building & PR submission
+
+### Check-in 1 (mid-week)
+
+**Current progress:**
+Sub-tasks 1–3 from PLAN.md are done. I added the request body schema table for `POST /profiles` to `docs/API.md` (fields, types, required/optional, constraints), plus a note on the resume file type check and a known-bug note for the oversized-field `500` error I found while verifying against the live server. I also drafted a PR description in `PLAN.md`.
+
+**Next steps:**
+Sub-tasks 4 & 5 — add the example request/response to `docs/API.md`, then do a final verification pass (re-check the doc against Swagger UI and re-run `make test-unit`/`make check` to confirm no new failures) and lint the markdown before committing.
+
+**Blockers:**
+None so far.
+
+---

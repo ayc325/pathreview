@@ -25,6 +25,7 @@ Base URL: `http://localhost:8000`
 | `portfolio_url` | string | No | Max length 500. Subject to the same known bug as `github_username` above. |
 | `resume_file` | file | No | Accepted types: `application/pdf`, `text/markdown`, `text/plain`. Returns `422` with `"Resume must be a PDF or Markdown file"` for other types. |
 
+> **Note:** Unlike `github_username` and `portfolio_url`, the `resume_file` type check isn't enforced by a Pydantic schema — it's a manual check inside `create_profile_endpoint` in `api/routes/profiles.py`. This means the accepted file types won't show up in the OpenAPI schema/Swagger UI's generated types; they're only enforced (and documented) here.
 > **Known bug:** `github_username`/`portfolio_url` values exceeding their max length are rejected internally by Pydantic validation, but the endpoint doesn't catch this as an `HTTPException`, so it surfaces as a `500 Internal Server Error` rather than a `422`. Not yet filed as its own issue — documented here as-observed; fixing the endpoint's error handling is out of scope for this doc-only PR.
 
 `GET /profiles/{profile_id}` — Retrieve a profile.
