@@ -16,6 +16,15 @@ Base URL: `http://localhost:8000`
 ### Profiles
 
 `POST /profiles` — Create a profile with resume and GitHub username.
+
+**Request body** (`multipart/form-data`):
+
+| Field | Type | Required | Constraints |
+| --- | --- | --- | --- |
+| `github_username` | string | No | Max length 255 |
+| `portfolio_url` | string | No | Max length 500 |
+| `resume_file` | file | No | Accepted types: `application/pdf`, `text/markdown`, `text/plain`. Returns `422` with `"Resume must be a PDF or Markdown file"` for other types. |
+
 `GET /profiles/{profile_id}` — Retrieve a profile.
 `DELETE /profiles/{profile_id}` — Delete a profile and associated data.
 
