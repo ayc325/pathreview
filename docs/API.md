@@ -21,9 +21,11 @@ Base URL: `http://localhost:8000`
 
 | Field | Type | Required | Constraints |
 | --- | --- | --- | --- |
-| `github_username` | string | No | Max length 255 |
-| `portfolio_url` | string | No | Max length 500 |
+| `github_username` | string | No | Max length 255. **Known bug:** exceeding this returns `500 Internal Server Error` (`"Failed to create profile"`) instead of a `422` — see note below. |
+| `portfolio_url` | string | No | Max length 500. Subject to the same known bug as `github_username` above. |
 | `resume_file` | file | No | Accepted types: `application/pdf`, `text/markdown`, `text/plain`. Returns `422` with `"Resume must be a PDF or Markdown file"` for other types. |
+
+> **Known bug:** `github_username`/`portfolio_url` values exceeding their max length are rejected internally by Pydantic validation, but the endpoint doesn't catch this as an `HTTPException`, so it surfaces as a `500 Internal Server Error` rather than a `422`. Not yet filed as its own issue — documented here as-observed; fixing the endpoint's error handling is out of scope for this doc-only PR.
 
 `GET /profiles/{profile_id}` — Retrieve a profile.
 `DELETE /profiles/{profile_id}` — Delete a profile and associated data.
