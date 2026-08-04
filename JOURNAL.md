@@ -59,9 +59,9 @@ None so far.
 
 ### Check-in 2 (end of week)
 
-**PR link:** [link to your submitted pull request]
+**PR link:** [PR 426](https://github.com/ascherj/pathreview/pull/426)
 
-**Branch:** [the branch name you worked on, e.g. `fix/123-short-description`] docs/89-add-missing-request-body-schema
+**Branch:** [the branch name you worked on, e.g. `fix/123-short-description`] `docs/89-add-missing-request-body-schema`
 
 **What you built:**
 I added the missing request body documentation for `POST /profiles` to `docs/API.md` — a schema table covering all three fields (`github_username`, `portfolio_url`, `resume_file`), their types, optionality, and constraints, plus notes on the resume file-type validation and a known bug I found while verifying against the live server (oversized fields return a `500` instead of the expected `422`). I also added an example request/response so the doc is usable on its own.
