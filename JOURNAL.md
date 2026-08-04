@@ -56,3 +56,19 @@ Sub-tasks 4 & 5 — add the example request/response to `docs/API.md`, then do a
 None so far.
 
 ---
+
+### Check-in 2 (end of week)
+
+**PR link:** [link to your submitted pull request]
+
+**Branch:** [the branch name you worked on, e.g. `fix/123-short-description`] docs/89-add-missing-request-body-schema
+
+**What you built:**
+I added the missing request body documentation for `POST /profiles` to `docs/API.md` — a schema table covering all three fields (`github_username`, `portfolio_url`, `resume_file`), their types, optionality, and constraints, plus notes on the resume file-type validation and a known bug I found while verifying against the live server (oversized fields return a `500` instead of the expected `422`). I also added an example request/response so the doc is usable on its own.
+
+**Tests added or updated:**
+Added `tests/unit/test_openapi_schema.py` — a regression test that calls `app.openapi()` directly and asserts `POST /profiles`'s generated schema still exposes `github_username`, `portfolio_url`, and `resume_file`. It's meant to catch the schema silently drifting out of sync with `docs/API.md` if someone renames or removes a field later.
+
+**Self-review confirmation:** [x] make check passes  [x] make test-unit passes
+
+**Draft PR feedback received from:** [name or Slack handle, or "none"] Dennis Lam 
