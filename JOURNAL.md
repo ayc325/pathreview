@@ -102,12 +102,12 @@ It was harder than expected in terms of documentation. I thought that the docume
 **What did you learn about working in a large codebase?**
 [What's different about contributing to someone else's production code
 vs. building your own project?]
-I learned that it's ok not to know everything about the codebase. I just need to know how my portion of the project works in the grand scheme of the project.
+I learned that it's ok not to know everything about the codebase. I just need to know how my portion of the project works in the grand scheme of the project. For this project, I utilized reading over the `API.md` and `ARCHITECTURE.md` in order to understand the general project and how the API specs documentation should be written. Since this specific issue was regarding the POST /profiles, I also did more of a deep dive into the `profile.py` file and focused less on the other files since I didn't need to know the other parts of the code as much to complete my issue.
 
 **How did AI tools help — and where did they fall short?**
 [Where was AI assistance most useful this module? Where did you need
 to go beyond what AI could give you?]
-The AI Tools helped in terms of refining the API specs documentation that I had already written up by hand. Specifically, I took what I had, gave the AI my documentation and the grading rubric and had it fill in any lackluster portions of my api documentation.
+The AI Tools helped in terms of refining the API specs documentation that I had already written up by hand. Specifically, I took what I had, gave the AI my documentation, `API.md`, `ARCHITECTURE.md` and the grading rubric and had it fill in any lackluster portions of my api documentation.
 
 **What would you do differently if you started over?**
 [Issue selection, planning, implementation, or process — anything
