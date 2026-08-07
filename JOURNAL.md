@@ -72,3 +72,48 @@ Added `tests/unit/test_openapi_schema.py` — a regression test that calls `app.
 **Self-review confirmation:** [x] make check passes  [x] make test-unit passes
 
 **Draft PR feedback received from:** [name or Slack handle, or "none"] Dennis Lam 
+
+-- 
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [x] Yes  [ ] No — still awaiting review
+
+**Summary of feedback:**
+[What did reviewers comment on? Or note that no review came in.]
+Reviewer just said it looks good and that it was great that I pointed out a bug found from working on the issue for docs.
+
+**How you responded:**
+[What changes did you make, or what did you reply? If no feedback,
+leave blank.]
+I did not need to make any changes since I had already pointed out the bug in the PR summary.
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+[Be specific — what part of the process, codebase, or workflow
+surprised you?]
+It was harder than expected in terms of documentation. I thought that the documentation update would be just the README update, but it was actually an api schema documentation update that had to be reflected on the swagger ui. In short, the scope of the project was different than what I thought and it suprised me.
+
+**What did you learn about working in a large codebase?**
+[What's different about contributing to someone else's production code
+vs. building your own project?]
+I learned that it's ok not to know everything about the codebase. I just need to know how my portion of the project works in the grand scheme of the project.
+
+**How did AI tools help — and where did they fall short?**
+[Where was AI assistance most useful this module? Where did you need
+to go beyond what AI could give you?]
+The AI Tools helped in terms of refining the API specs documentation that I had already written up by hand. Specifically, I took what I had, gave the AI my documentation and the grading rubric and had it fill in any lackluster portions of my api documentation.
+
+**What would you do differently if you started over?**
+[Issue selection, planning, implementation, or process — anything
+you'd change?]
+If I started over, I would not have chosen a documentation based issue. I would've chosen a bug issue. Documentation issues are hard to test besides just testing if the documentation is being displayed on the swagger ui. A bug issue has more clear right/wrong in terms of testing, so I would've gone for that. In addition, documentation based issues actually take a bit more understanding of the design of the project because there is no strict right/wrong test case that can be written for it.
+
+**What are you most proud of from this module?**
+[One thing — it doesn't have to be the PR itself.]
+I am most proud that I was able to complete the project because I was very busy these past few weeks. I am proud that I made it through and completed it and still managed to learn great git commit techniques, prompt engineering methods, and documentation.
